@@ -1,0 +1,132 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ZEMUASM",
+	"patterns": [
+		{"include": "#comments"},
+		{"include": "#strings"},
+		{"include": "#numbers"},
+		{"include": "#registers"},
+		{"include": "#opcodes"},
+		{"include": "#labels"},
+		{"include": "#datas"},
+		{"include": "#datasize"}
+	],
+	"repository": {
+		"comments":{
+			"patterns": [
+				{
+					"name": "comment.line.single.zemuasm",
+					"match": ";[^\n]*"
+				}
+			]
+		},
+		"opcodes": {
+			"patterns": [
+				{
+					"name": "keyword.operator.zeuasm",
+					"comment": "Basic opcodes to apply operation on 8-bit data",
+					"match": "(?i)\\b(ADD|SUB|MUL|DIV|MOD)\\b"
+				},
+				{
+					"name": "keyword.operator.new.zeuasm",
+					"comment": "Basic opcodes to apply operation on 16-bit data",
+					"match": "(?i)\\b(WADD|WSUB|WMUL|WDIV|WMOD)\\b"
+				},
+				{
+					"name": "keyword.other.zemuasm",
+					"comment": "Basic opcodes to manage 8-bit data",
+					"match": "(?i)\\b(LOAD|MOVE|PEEK|PEEKR|POKE|PUSH|POP)\\b"
+				},
+				{
+					"name": "keyword.other.zemuasm",
+					"comment": "Basic opcodes to manage 16-bit data",
+					"match": "(?i)\\b(WLOAD|WMOVE|WPEEK|WPEEKR|WPOKE|WPUSH|WPOP)\\b"
+				},
+				{
+					"name": "keyword.control.zemuasm",
+					"comment": "Control opcodes",
+					"match": "(?i)\\b(JUMP|JUMPI|JUMPZ|JUMPN|JUMPNI|JUMPC|JUMPCI|CALL|CALLR|RETURN)\\b"
+				},
+				{
+					"name": "keyword.other.debug.zemuasm",
+					"comment": "Special opcodes",
+					"match": "(?i)\\b(HALT|STOP|NOP|PRINT|WPRINT|WRITE)\\b"
+				},
+				{
+					"name": "invalid.illegal",
+					"comment": "",
+					"match": "(?i)\\b(DATA)\\b"
+				}
+			]
+		},
+		"registers": {
+			"patterns": [
+				{
+					"comment": "8 bit registers",
+					"name": "variable.language.zemuasm",
+					"match": "(?i)\\b(R0|R1|R2|R3|R4|R5|R6|R7|R8|R9|R10|R11|R12|R13|R14|R15)\\b"
+				},
+				{
+					"comment": "16 bit registers",
+					"name": "variable.language.zemuasm",
+					"match": "(?i)\\b(W0|W1|W2|W3|W4|W5|W6|W7)\\b"
+				},
+				{
+					"comment": "Special 16 bit registers",
+					"name": "variable.language.zemuasm",
+					"match": "(?i)\\b(SP|PC)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.zemuasm",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.zemuasm",
+					"match": "\\\\."
+				}
+			]
+		},
+		"numbers": {
+			"name": "constant",
+			"patterns": [
+				{
+					"name": "constant.numeric.zemuasm",
+					"match": "\\b[0-9]+(\\.[0-9]+)?\\b|\\b0[xX][0-9a-fA-F]+\\b"
+				}
+			]
+		},
+		"labels": {
+			"name": "entity.name.section",
+			"comment": "Label memory address",
+			"patterns": [
+				{
+					"name": "entity.name.section.zemuasm",
+					"match": "\\b[^:0-9\\W][^:\\W]*\\:"
+				}
+			]
+		},
+		"datas": {
+			"name": "support.constant.zemuasm",
+			"patterns": [
+				{
+					"name": "support.constant.zemuasm",
+					"match": "\\bdb\\b"
+				}
+			]
+		},
+		"datasize": {
+			"name": "support.constant.zemuasm",
+			"patterns": [
+				{
+					"name": "support.constant.zemuasm",
+					"comment": "Size of data stored with db keyword",
+					"match": "(#[^:0-9\\W][^:\\W]*)\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.zemuasm"
+}
