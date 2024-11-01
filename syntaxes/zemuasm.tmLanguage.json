@@ -4,6 +4,8 @@
 	"patterns": [
 		{"include": "#comments"},
 		{"include": "#strings"},
+		{"include": "#atregisters"},
+		{"include": "#dataat"},
 		{"include": "#numbers"},
 		{"include": "#registers"},
 		{"include": "#opcodes"},
@@ -24,23 +26,33 @@
 			"patterns": [
 				{
 					"name": "keyword.operator.zeuasm",
-					"comment": "Basic opcodes to apply operation on 8-bit data",
+					"comment": "Opcodes for arithmetic operation on 8-bit data",
 					"match": "(?i)\\b(ADD|SUB|MUL|DIV|MOD)\\b"
 				},
 				{
 					"name": "keyword.operator.new.zeuasm",
-					"comment": "Basic opcodes to apply operation on 16-bit data",
+					"comment": "Opcodes for arithmetic operation on 16-bit data",
 					"match": "(?i)\\b(WADD|WSUB|WMUL|WDIV|WMOD)\\b"
+				},
+				{
+					"name": "keyword.operator.zeuasm",
+					"comment": "Opcodes for bitwize operation on 8-bit data",
+					"match": "(?i)\\b(BAND|BOR|BXOR|BNOT|SHL|SHR|SHLU|SHRU|ROTL|ROTR|ROTLU|ROTRU)\\b"
+				},
+				{
+					"name": "keyword.operator.zeuasm",
+					"comment": "Opcodes for bitwize operation on 16-bit data",
+					"match": "(?i)\\b(WBAND|WBOR|WBXOR|WBNOT|WSHL|WSHR|WSHLU|WSHRU|WROTL|WROTR|WROTLU|WROTRU)\\b"
 				},
 				{
 					"name": "keyword.other.zemuasm",
 					"comment": "Basic opcodes to manage 8-bit data",
-					"match": "(?i)\\b(LOAD|MOVE|PEEK|PEEKR|POKE|PUSH|POP)\\b"
+					"match": "(?i)\\b(MV|LOAD|MOVE|PEEK|PEEKR|POKE|POKER|PUSH|POP)\\b"
 				},
 				{
 					"name": "keyword.other.zemuasm",
 					"comment": "Basic opcodes to manage 16-bit data",
-					"match": "(?i)\\b(WLOAD|WMOVE|WPEEK|WPEEKR|WPOKE|WPUSH|WPOP)\\b"
+					"match": "(?i)\\b(WMV|WLOAD|WMOVE|WPEEK|WPEEKR|WPOKE|WPOKER|WPUSH|WPOP)\\b"
 				},
 				{
 					"name": "keyword.control.zemuasm",
@@ -64,17 +76,26 @@
 				{
 					"comment": "8 bit registers",
 					"name": "variable.language.zemuasm",
-					"match": "(?i)\\b(R0|R1|R2|R3|R4|R5|R6|R7|R8|R9|R10|R11|R12|R13|R14|R15)\\b"
+					"match": "(?i)\\br(?:[0-9]|1[0-5])\\b"
 				},
 				{
 					"comment": "16 bit registers",
 					"name": "variable.language.zemuasm",
-					"match": "(?i)\\b(W0|W1|W2|W3|W4|W5|W6|W7)\\b"
+					"match": "(?i)\\bw(?:[0-9]|1[0-5])\\b"
 				},
 				{
 					"comment": "Special 16 bit registers",
 					"name": "variable.language.zemuasm",
 					"match": "(?i)\\b(SP|PC)\\b"
+				}
+			]
+		},
+		"atregisters": {
+			"patterns": [
+				{
+					"comment": "16 bit registers",
+					"name": "storage.type",
+					"match": "(?i)@\\b(?:[wr](?:[0-9]|1[0-5])|sp|pc)\\b"
 				}
 			]
 		},
@@ -99,7 +120,7 @@
 			]
 		},
 		"labels": {
-			"name": "entity.name.section",
+			"name": "label",
 			"comment": "Label memory address",
 			"patterns": [
 				{
@@ -118,12 +139,22 @@
 			]
 		},
 		"datasize": {
+			"patterns": [
+				{
+					"name": "constant.language",
+					"comment": "Size of data stored with db keyword",
+					"match": "(#[^:0-9\\W][^:\\W]*)\\b"
+				}
+			]
+		},
+		
+		"dataat": {
 			"name": "support.constant.zemuasm",
 			"patterns": [
 				{
-					"name": "support.constant.zemuasm",
-					"comment": "Size of data stored with db keyword",
-					"match": "(#[^:0-9\\W][^:\\W]*)\\b"
+					"name": "constant.character",
+					"comment": "Data at memory address",
+					"match": "@((\\w|#)+)"
 				}
 			]
 		}
