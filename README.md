@@ -5,7 +5,7 @@ This is a simple syntax highlighting extension for ZEMUASM.
 ZEMUASM (Z Emulator Assembly) is a tiny assembly language used to run on my custom computer emulator.
 It uses a custom architecture inspired by the Gameboy.
 
-![Preview](images/preview.png)
+![Preview](https://github.com/Zevest/zemuasm-lang/blob/master/images/preview.png?raw=true)
 
 ## Features
 Syntax highlighting for zemuasm lang
