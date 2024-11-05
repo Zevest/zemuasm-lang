@@ -6,6 +6,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 - Add syntax highlighting for more instructions
+    - inc / dec / winc / wdec
     - @ operator for indirect/direct memory access
     - Data management:
         - mv / wmv

@@ -27,12 +27,12 @@
 				{
 					"name": "keyword.operator.zeuasm",
 					"comment": "Opcodes for arithmetic operation on 8-bit data",
-					"match": "(?i)\\b(ADD|SUB|MUL|DIV|MOD)\\b"
+					"match": "(?i)\\b(ADD|SUB|MUL|DIV|MOD|INC|DEC)\\b"
 				},
 				{
 					"name": "keyword.operator.new.zeuasm",
 					"comment": "Opcodes for arithmetic operation on 16-bit data",
-					"match": "(?i)\\b(WADD|WSUB|WMUL|WDIV|WMOD)\\b"
+					"match": "(?i)\\b(WADD|WSUB|WMUL|WDIV|WMOD|WINC|WDEC)\\b"
 				},
 				{
 					"name": "keyword.operator.zeuasm",
